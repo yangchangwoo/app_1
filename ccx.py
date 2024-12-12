@@ -6,7 +6,7 @@ from matplotlib import rc
 import streamlit as st
 import altair as alt
 import zipfile  
-
+import os
 
 # Streamlit 페이지 설정
 st.set_page_config(
