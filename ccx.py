@@ -2,7 +2,7 @@ import json
 import geopandas as gpd
 import pandas as pd
 import matplotlib.pyplot as plt
-from matplotlib import rc
+from matplotlib import rc, font_manager
 import streamlit as st
 import altair as alt
 import zipfile  
@@ -18,15 +18,11 @@ st.set_page_config(
 
 # 폰트 설정
 try:
-    # 로컬 실행 시 폰트 경로
-    font_path = "C:/Windows/Fonts/malgun.ttf"
-    
-    # Streamlit Cloud용 폰트 파일 로드
+    # 프로젝트 디렉터리에서 NanumGothic-Regular.ttf 로드
+    font_path = "NanumGothic-Regular.ttf"  # GitHub에 업로드한 폰트 파일 이름
     if not os.path.exists(font_path):
-        font_path = "/usr/share/fonts/truetype/nanum/NanumGothic.ttf"  # Streamlit Cloud
-        if not os.path.exists(font_path):  # 폰트 파일이 없을 경우
-            st.error("폰트 파일을 찾을 수 없습니다. 시스템 폰트를 확인하세요.")
-            st.stop()
+        st.error("폰트 파일을 찾을 수 없습니다. GitHub에 NanumGothic-Regular.ttf를 업로드했는지 확인하세요.")
+        st.stop()
 
     # 폰트 설정
     font_name = font_manager.FontProperties(fname=font_path).get_name()
@@ -35,7 +31,6 @@ try:
 except Exception as e:
     st.error(f"폰트 설정 오류: {str(e)}")
     st.stop()
-
 
 csv_path = "final.csv"
 zip_path = "ctprvn.zip"
