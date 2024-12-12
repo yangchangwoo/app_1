@@ -122,6 +122,9 @@ with col1:
     # 평균 값 계산
     mean_value = geo_gdf['value'].mean()
     st.metric("평균", f"{mean_value:.2f}")
+    # 최대 값 지역
+    max_region = geo_gdf.loc[geo_gdf['value'].idxmax(), 'CTP_KOR_NM']
+    st.metric("최대 지역", max_region)
     
     # 범죄 발생총건수 필터링
     crime_data = df[(df['category'] == '범죄 발생총건수') & (df['year'] == selected_year)]
@@ -199,3 +202,4 @@ with col3:
     st.table(top5[['city', 'value']])
 
 
+# https://mltukaqnvvb7wbtvg85avb.streamlit.app/    스트림릿 웹사이트 배포 링크
