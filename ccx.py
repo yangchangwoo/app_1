@@ -17,8 +17,15 @@ st.set_page_config(
 )
 
 # 한글 폰트 설정 (Windows에서는 Malgun Gothic 사용)
-rc('font', family='Malgun Gothic')  # Windows 사용 시
-plt.rcParams['axes.unicode_minus'] = False  # 마이너스 기호 깨짐 방지
+try:
+    font_path = "C:/Windows/Fonts/malgun.ttf"  # Windows의 Malgun Gothic 경로
+    font_name = font_manager.FontProperties(fname=font_path).get_name()
+    rc('font', family=font_name)
+    plt.rcParams['axes.unicode_minus'] = False  # 마이너스 기호 깨짐 방지
+except Exception as e:
+    st.error("폰트 설정에 문제가 발생했습니다. 시스템 폰트를 확인하세요.")
+    st.stop()
+
 
 csv_path = "final.csv"
 zip_path = "ctprvn.zip"
