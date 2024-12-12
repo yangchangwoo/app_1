@@ -32,6 +32,7 @@ except Exception as e:
     st.error(f"폰트 설정 오류: {str(e)}")
     st.stop()
 
+
 csv_path = "final.csv"
 zip_path = "ctprvn.zip"
 
@@ -113,19 +114,7 @@ def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
 # Streamlit 열 구성 (Column 1, Column 2, Column 3)
 col1, col2, col3 = st.columns([1, 2, 1])
 
-# 컬럼 1: 범죄 건수와 인구 수의 연관성
-with col1:
-    st.header("요약 정보")
-    
-    # 평균 범죄율
-    mean_crime_rate = geo_gdf['value'].mean()
-    st.metric("평균", f"{mean_crime_rate:.2f}")
-    
-    # 최대 범죄율 지역
-    max_crime_region = geo_gdf.loc[geo_gdf['value'].idxmax(), 'CTP_KOR_NM']
-    st.metric("최대 지역", max_crime_region)
-    
-    # 컬럼 1: 범죄 건수와 인구 수의 연관성
+
 # 컬럼 1: 범죄 건수와 인구 수의 연관성
 with col1:
     st.header("요약 정보")
