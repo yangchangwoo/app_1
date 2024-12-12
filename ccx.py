@@ -20,9 +20,8 @@ st.set_page_config(
 rc('font', family='Malgun Gothic')  # Windows 사용 시
 plt.rcParams['axes.unicode_minus'] = False  # 마이너스 기호 깨짐 방지
 
-# CSV 및 GeoJSON 파일 경로
-csv_path = "final.csv" 
-
+csv_path = "final.csv"
+zip_path = "ctprvn.zip"
 
 # CSV 데이터 로드
 df = pd.read_csv(csv_path)
