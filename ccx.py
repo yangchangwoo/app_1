@@ -16,14 +16,24 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# 한글 폰트 설정 (Windows에서는 Malgun Gothic 사용)
+# 폰트 설정
 try:
-    font_path = "C:/Windows/Fonts/malgun.ttf"  # Windows의 Malgun Gothic 경로
+    # 로컬 실행 시 폰트 경로
+    font_path = "C:/Windows/Fonts/malgun.ttf"
+    
+    # Streamlit Cloud용 폰트 파일 로드
+    if not os.path.exists(font_path):
+        font_path = "/usr/share/fonts/truetype/nanum/NanumGothic.ttf"  # Streamlit Cloud
+        if not os.path.exists(font_path):  # 폰트 파일이 없을 경우
+            st.error("폰트 파일을 찾을 수 없습니다. 시스템 폰트를 확인하세요.")
+            st.stop()
+
+    # 폰트 설정
     font_name = font_manager.FontProperties(fname=font_path).get_name()
     rc('font', family=font_name)
     plt.rcParams['axes.unicode_minus'] = False  # 마이너스 기호 깨짐 방지
 except Exception as e:
-    st.error("폰트 설정에 문제가 발생했습니다. 시스템 폰트를 확인하세요.")
+    st.error(f"폰트 설정 오류: {str(e)}")
     st.stop()
 
 
